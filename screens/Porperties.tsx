@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 import axios from 'axios';
 //import Property from '../models/Property';
 
-export default function TabOneScreen() {
+export default function PropertiesScreen() {
 
   const [properties, setProperties] = useState([])
   const [selectedId, setSelectedId] = useState(null);

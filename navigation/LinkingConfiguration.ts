@@ -17,9 +17,9 @@ export default {
               HomeScreen: 'home',
             },
           },
-          TabOne: {
+          Properties: {
             screens: {
-              TabOneScreen: 'one',
+              PropertiesScreen: 'properties',
             },
           },
         },
