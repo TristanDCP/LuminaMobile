@@ -1,33 +1,36 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import {Image, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <Text> HELLO THERE !</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-    </View>
+    <Text>Salut salut</Text>
+  // <View style={{flex: 1}}>
+  // <View><Text>my text</Text></View>
+  //     <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
+  //     <Image
+  //       source={require('../assets/images/luminalogo.png')}
+  //       style={{ width: 200, height: 200  }}
+  //       />
+  //     </View>
+  // </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: StatusBar.currentHeight,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  scrollView: {
+    backgroundColor: 'gray',
+    marginHorizontal: 20,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  text: {
+    fontSize: 42,
   },
 });
+
