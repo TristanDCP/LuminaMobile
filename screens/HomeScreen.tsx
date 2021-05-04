@@ -4,13 +4,13 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function TabTwoScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello World !</Text>
-      <Text>Voilà j'ai fini de bosser pour aujourd'hui</Text>
+      <Text style={styles.title}>Lumina Immobillier</Text>
+      <Text>Bienvenue</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <EditScreenInfo path="/screens/HomeScreen.tsx" />
     </View>
   );
 }
