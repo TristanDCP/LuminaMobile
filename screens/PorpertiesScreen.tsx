@@ -5,11 +5,12 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, View } from '../components/Themed';
 import axios from 'axios';
 //import Property from '../models/Property';
+import { useNavigation } from '@react-navigation/native';
 
 export default function PropertiesScreen() {
 
   const [properties, setProperties] = useState([])
-  const [selectedId, setSelectedId] = useState(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
 		// axios.get("http://localhost:8000/api/v1/properties").then( response => {
@@ -17,25 +18,22 @@ export default function PropertiesScreen() {
 			console.log(response.data.property);
 			setProperties(response.data.property);
 		});
-	}, []);
+	}, []); 
 
-  const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-      <Text style={[styles.title, textColor]}>{item.idProperty as Number}</Text>
-      <Text style={[styles.title, textColor]}>{item.propertyStatus as Number}</Text>
+  const Item = ({ item }) => (
+    <TouchableOpacity 
+      style={[styles.item]} 
+      onPress={() => navigation.navigate('Property', { idProperty: item.idProperty }
+    )}>
+      <Text style={[styles.title]}>{item.idProperty as Number}</Text>
+      <Text style={[styles.title]}>{item.propertyStatus as Number}</Text>
     </TouchableOpacity>
   );
   
   const renderItem = ({ item }) => {
-    const backgroundColor = item.idProperty === selectedId ? "#6e3b6e" : "#f9c2ff";
-    const color = item.idProperty === selectedId ? 'white' : 'black';
-
     return(
       <Item
         item={item}
-        onPress={() => setSelectedId(item.idProperty)}
-        backgroundColor={{ backgroundColor }}
-        textColor={{ color }}
       />
     );
   };
@@ -46,7 +44,6 @@ export default function PropertiesScreen() {
           data={properties}
           renderItem={renderItem}
           keyExtractor={item => item.idProperty.toString()}
-          extraData={selectedId}
         />
       </SafeAreaView>
   );

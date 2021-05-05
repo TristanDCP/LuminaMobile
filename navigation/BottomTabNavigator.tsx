@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import PropertiesScreen from '../screens/Porperties';
+import PropertiesScreen from '../screens/PorpertiesScreen';
 import HomeScreen from '../screens/HomeScreen';
 import { BottomTabParamList, PropertiesParamList, HomeParamList } from '../types';
 
@@ -72,7 +72,7 @@ function PropertiesNavigator() {
       <PropertiesStack.Screen
         name="PropertiesScreen"
         component={PropertiesScreen}
-        options={{ headerTitle: 'Tab One Tile' }}
+        options={{ headerTitle: 'Liste des propriétés' }}
       />
     </PropertiesStack.Navigator>
   );

@@ -25,6 +25,9 @@ export default {
         },
       },
       NotFound: '*',
+      Property: {
+        path: 'property/:idProperty',
+      },
     },
   },
 };
