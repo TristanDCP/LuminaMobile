@@ -10,7 +10,7 @@ import UpdateProfileScreen from '../screens/home/UpdateProfile';
 
 const Tab = createBottomTabNavigator()
 
-function HomeStack(props) {
+export default function HomeStack(props) {
 
   const { navigate } = props.navigation
   const { handleLogout } = useAuth()
@@ -18,7 +18,6 @@ function HomeStack(props) {
   const SignoutScreen = () => {
     handleLogout()
     navigate('Auth')
-
   }
 
   return(
@@ -67,18 +66,3 @@ function HomeStack(props) {
 function TabBarIcon(props) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
-
-/*
-const HomeStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-    UpdateProfile: UpdateProfileScreen
-  },
-  {
-    initialRouteName: 'Home',
-    defaultNavigationOptions: () => ({ headerStyle, headerTitleStyle })
-  }
-)
-*/
-
-export default HomeStack

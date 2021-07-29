@@ -30,7 +30,7 @@ export default function Login(props) {
       setLoading(false)
 
       let username = (response.user.username !== null)
-      if(username) navigate('App')
+      if(username) navigate('Profil')
       else navigation.replace('Username')
     } catch(error) {
       setError(error.message)

@@ -42,7 +42,7 @@ return(
         <Text style={{marginBottom: 10}}>- {props.route.params['codePostal']} </Text>
  
           
-        <Button onPress={() => navigation.navigate('HomePage')}
+        <Button onPress={() => navigation.navigate('Accueil')}
           title="Retour à la page précédente" />
       </Card>
 

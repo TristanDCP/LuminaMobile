@@ -40,7 +40,7 @@ export default function HomePage(){
       <View>
         {Object.keys(properties).map((items) => {
           return (
-            console.log('NEW'),
+            //console.log('NEW'),
             <Card key={items.toString()}>
             <Card.Title>Type de propriété : {properties[items]["parameters"][1].valueParameter}</Card.Title>
             <Card.Divider/>
