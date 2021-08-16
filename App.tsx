@@ -8,6 +8,10 @@ import useColorScheme from './hooks/useColorScheme';
 // import Navigation from './navigation';
 import Router from './router';
 
+if(__DEV__) {
+  import('./ReactotronConfig').then(() => console.log('Reactotron Configured'));
+}
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();

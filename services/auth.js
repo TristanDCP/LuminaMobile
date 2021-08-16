@@ -48,6 +48,16 @@ export async function appointmentsList() {
   }
 }
 
+export async function propertiesList() {
+  try {
+    let res = await axios.get(c.PROPERTY_LIST)
+
+    return res.data
+  } catch(e) {
+    throw handler(e)
+  }
+}
+
 export function handler(err) {
   let error = err
 

@@ -8,6 +8,8 @@ export const REGISTER = `${API_URL}/signup`
 export const LOGIN = `${API_URL}/login`
 export const UPDATE_PROFILE = `${API_URL}/user`
 export const APPOINTMENT_LIST = `${API_URL}/appointments`
+export const PROPERTY_LIST = `${API_URL}/properties`
+
 
 // export const  = `${API_URL}/`
 const tintColorLight = '#2f95dc';
