@@ -36,7 +36,7 @@ export default function Login(props) {
       setLoading(false)
 
       let username = (response.user.username !== null)
-      if(username) navigate('Auth')
+      if(username) navigate('Dashboard')
       // if(username) forceUpdate()
       else navigation.replace('Username')
     } catch(error) {

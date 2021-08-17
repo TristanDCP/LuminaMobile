@@ -54,10 +54,8 @@ function AuthProvider(props) {
     try {
       // Remove data
       await AsyncStorage.multiRemove(keys)
-
       // Axios authorization header
       delete axios.defaults.headers.common["Authorization"]
-
       // Dispatch to reducer
       dispatch({ type: LOGGED_OUT })
     } catch(error) {

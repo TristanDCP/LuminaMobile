@@ -9,8 +9,12 @@ import PropertyDetailsScreen from '../screens/PropertyDetailsScreen';
 
 // Login Screens
 import RegisterScreen from '../screens/auth/Register';
+import DashboardScreen from '../screens/auth/Dashboard';
+
+import UpdateProfileScreen from '../screens/auth/updateProfile';
 import LoginScreen from '../screens/auth/Login';
 import ForgotPasswordScreen from '../screens/auth/ForgotPassword';
+import CalendarScreen from '../screens/auth/Calendar';
 
 import { headerStyle, headerTitleStyle } from '../theme'
 import { createStackNavigator } from '@react-navigation/stack';
@@ -95,6 +99,21 @@ const LoginStackNavigator = () => {
         name="ForgotPassword"
         component={ForgotPasswordScreen}
         options={{ title: 'Mot de passe oublié' }}
+      />
+      <Stack.Screen 
+        name="Dashboard"
+        component={DashboardScreen}
+        options={{ title: 'Tableau de bord' }}
+      />
+      <Stack.Screen 
+        name="UpdateProfil"
+        component={UpdateProfileScreen}
+        options={{ title: "Mettre à jour mon profil" }}
+      />
+      <Stack.Screen 
+        name="Calendar"
+        component={CalendarScreen}
+        options={{ title: "Votre calendrier" }}
       />
       <Stack.Screen 
         name="Register"
