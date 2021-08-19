@@ -66,7 +66,7 @@ const Agenda = () => {
         title: data[0].appointmentMotif,
         summary: data[0].appointmentType
       })
-    }).catch( err => setError(err) )
+    }).catch( err => setError("Vous n'avez pas encore pris RDV avec notre agence :)") )
   }, [state.token, state.user.idUser])
 
   const eventClicked = (event) => {
@@ -78,8 +78,9 @@ const Agenda = () => {
   return(
     <SafeAreaView style={styles.container}>
       {/* <ErrorText error={error} /> */}
-      { user == undefined ? 
       <View style={styles.container}>
+        <Text style={{color: 'purple', fontWeight: 'bold', marginBottom: 10}}>{error}</Text>
+        {/* { events != null ? <Text style={{color: 'purple', fontWeight: 'bold', marginBottom: 10}}>Vous avez {events.lenght} RDV.</Text>: null} */}
         <EventCalendar
           eventTapped={eventClicked}
           // Function on event press
@@ -97,7 +98,6 @@ const Agenda = () => {
           // Scroll to first event of the day (default true)
         />
       </View>
-      : <Text class={styles.error}> Vous n'avez pas de RDV ou n'avez pas accès à cette fonctionnalité. </Text>}
     </SafeAreaView>
   ) 
   

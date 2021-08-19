@@ -20,6 +20,7 @@ export default function Home(props) {
         <Text><Text style={{marginBottom: 10, fontWeight: 'bold', fontSize: 15}}>Votre adresse:</Text> {user.userAdr}</Text>
 
         <View>
+          {user.idRole == 2 || user.idRole == 1 || user.idRole == 4 ?
           <TouchableOpacity 
             style={{width: 350,height: 50,color: 'white',backgroundColor: 'pink',textAlign:'center',justifyContent: 'center',padding: 10,marginTop: 10}} 
             onPress={()=> navigate('Calendar')}>
@@ -27,13 +28,15 @@ export default function Home(props) {
                 Voir mes RDV
               </Text>
           </TouchableOpacity>
+          : null }
+          {user.idRole == 2 ?
           <TouchableOpacity 
             style={{width: 350,height: 50,color: 'white',backgroundColor: 'pink',textAlign:'center',justifyContent: 'center',padding: 10,marginTop: 10}} 
             onPress={()=> navigate('GeneratePDF')}>
               <Text style={{textAlign: 'center', fontWeight: 'bold'}}>
                 Générer un état des lieux
               </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> : null }
           <TouchableOpacity 
             style={{width: 350,height: 50,color: 'white',backgroundColor: 'pink',textAlign:'center',justifyContent: 'center',padding: 10,marginTop: 10}} 
             onPress={()=> navigate('UpdateProfil')}>
