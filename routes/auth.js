@@ -13,6 +13,7 @@ import DashboardScreen from '../screens/auth/Dashboard';
 
 import UpdateProfileScreen from '../screens/auth/updateProfile';
 import LoginScreen from '../screens/auth/Login';
+import GeneratePDFScreen from '../screens/auth/GeneratePDF';
 import ForgotPasswordScreen from '../screens/auth/ForgotPassword';
 import CalendarScreen from '../screens/auth/Calendar';
 
@@ -114,6 +115,11 @@ const LoginStackNavigator = () => {
         name="Calendar"
         component={CalendarScreen}
         options={{ title: "Votre calendrier" }}
+      />      
+      <Stack.Screen 
+        name="GeneratePDF"
+        component={GeneratePDFScreen}
+        options={{ title: "Générer un état des lieux" }}
       />
       <Stack.Screen 
         name="Register"
