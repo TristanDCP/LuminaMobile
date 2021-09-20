@@ -12,12 +12,12 @@ const Tab = createBottomTabNavigator()
 
 export default function HomeStack(props) {
 
-  const { navigate } = props.navigation
+  //const { navigate } = props.navigation
   const { handleLogout } = useAuth()
 
   const SignoutScreen = () => {
     handleLogout()
-    navigate('Auth')
+    navigation.navigate('Auth')
   }
 
   return(
@@ -31,7 +31,7 @@ export default function HomeStack(props) {
     >
       <Tab.Navigator>
         <Tab.Screen 
-          name="Accueil" 
+          name="Dashboard" 
           component={HomeScreen}
           options={{
             tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,

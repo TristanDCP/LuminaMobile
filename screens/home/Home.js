@@ -11,6 +11,7 @@ import { useAuth } from '../../providers/auth'
 
 export default function Home(props) {
   const { navigate } = props.navigation
+  
   const { state, handleLogout } = useAuth()
   const user = state.user
 
@@ -21,7 +22,13 @@ export default function Home(props) {
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <Text>{`Bonjour ${user.userLastname} ${user.userFirstname} (${user.userEmail})`}</Text>
+      {user ? (
+        <Text>{`Bonjour ${user.userLastname} ${user.userFirstname} (${user.userEmail})`}</Text>
+      ) : (
+        <Text>Hello world</Text>
+      )}
+      
+      {/* <Text>{`Bonjour ${user.userLastname} ${user.userFirstname} (${user.userEmail})`}</Text> */}
       {/* <Button title={'Mettre à jour mon profil'} onPress={ () => navigate('UpdateProfile') } />
       <Button title={'Se déconnecter'} onPress={ () => {
         handleLogout()

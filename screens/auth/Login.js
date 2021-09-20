@@ -8,18 +8,15 @@ import Form, { TYPES } from 'react-native-basic-form'
 import CTA from '../../components/CTA'
 import { Header, ErrorText } from '../../components/Shared'
 
-// function useForceUpdate(){
-//   const [value, setValue] = useState(0); // integer state
-//   return () => setValue(value => value + 1); // update the state to force render
-// }
+import { StackActions, CommonActions } from '@react-navigation/native'
 
 export default function Login(props) {
   const { navigation } = props
-  const { navigate } = navigation
+  //const { navigate } = navigation
+
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const { handleLogin } = useAuth()
-  // const forceUpdate = useForceUpdate();
 
   const fields = [
     {name: 'userEmail', label: 'Adresse email', required: true, type: TYPES.Email},
@@ -33,12 +30,16 @@ export default function Login(props) {
       let response = await api.login(state)
       await handleLogin(response)
 
+      //console.log(handleLogin)
+
       setLoading(false)
 
       let username = (response.user.username !== null)
-      if(username) navigate('Auth')
-      // if(username) forceUpdate()
-      else navigation.replace('Username')
+      if(username) { 
+        navigation.navigate('Dashboard', { user: response.user})
+      
+      
+     } else navigation.replace('Username')
     } catch(error) {
       setError(error.message)
       setLoading(false)

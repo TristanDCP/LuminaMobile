@@ -45,6 +45,7 @@ function AuthProvider(props) {
 
       // Dispatch to reducer
       dispatch({ type: LOGGED_IN, user: data.user })
+      
     } catch(error) {
       throw new Error(error)
     }

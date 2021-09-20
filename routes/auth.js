@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 // Default Screens
@@ -13,13 +14,12 @@ import LoginScreen from '../screens/auth/Login';
 import ForgotPasswordScreen from '../screens/auth/ForgotPassword';
 
 import { headerStyle, headerTitleStyle } from '../theme'
-import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator()
 
 export default function AuthStack(props) {
 
-  const { navigate } = props.navigation
+  //const { navigate } = props.navigation
 
   return(
     <NavigationContainer

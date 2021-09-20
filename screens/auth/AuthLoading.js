@@ -4,12 +4,12 @@ import {
   View,
   Text
 } from 'react-native'
-import { StackActions } from 'react-navigation'
+import { StackActions } from '@react-navigation/native'
 
 import { useAuth } from '../../providers/auth'
 
 export default function AuthLoading(props) {
-  const { navigate } = props.navigation
+  //const { navigate } = props.navigation
   const { getAuthState } = useAuth()
 
   useEffect(() => {
@@ -23,11 +23,12 @@ export default function AuthLoading(props) {
       if(user) {
         let username = !!(user.username)
         
-        if(username) navigate('App')
-        else navigate('Auth', {}, StackActions.replace({ routeName: "Login" }))
-      } else navigate('Auth')
+        if(username) navigation.navigate('App')
+        else navigation.navigate('Auth', {}, StackActions.replace({ routeName: "Dashboard" }))
+        
+      } else navigation.navigate('Auth')
     } catch(e) {
-      navigate('Auth')
+      navigation.navigate('Auth')
     }
   }
 
