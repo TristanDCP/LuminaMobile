@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   Alert
 } from 'react-native'
-
+import propertyFilter from './PropertyFilterScreen'
 import { useAuth } from '../../providers/auth'
 
 export default function Home(props) {

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View, Text, Image, StyleSheet, TextInput } from 'react-native';
 import { Card, ListItem, Button, Icon  } from 'react-native-elements';
+import PropertyFilter from './home/PropertyFilterScreen';
 
 
 export default function HomePage(){
@@ -52,6 +53,7 @@ export default function HomePage(){
   return (
   <ScrollView>
     <View>
+      {/* <PropertyFilter/> */}
       <Card>
         <Text style={{textAlign: 'center', fontWeight: 'bold'}}>Que recherchez-vous ?</Text>
           <TextInput
