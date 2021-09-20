@@ -8,12 +8,11 @@ import HomeScreen from '../screens/HomePageScreen';
 import PropertyDetailsScreen from '../screens/PropertyDetailsScreen';
 
 // Login Screens
-import RegisterScreen from '../screens/auth/Register';
+// import RegisterScreen from '../screens/auth/Register';
 import DashboardScreen from '../screens/auth/Dashboard';
 
 import UpdateProfileScreen from '../screens/auth/updateProfile';
 import LoginScreen from '../screens/auth/Login';
-import GeneratePDFScreen from '../screens/auth/GeneratePDF';
 import ForgotPasswordScreen from '../screens/auth/ForgotPassword';
 import CalendarScreen from '../screens/auth/Calendar';
 
@@ -116,16 +115,11 @@ const LoginStackNavigator = () => {
         component={CalendarScreen}
         options={{ title: "Votre calendrier" }}
       />      
-      <Stack.Screen 
-        name="GeneratePDF"
-        component={GeneratePDFScreen}
-        options={{ title: "Générer un état des lieux" }}
-      />
-      <Stack.Screen 
+      {/* <Stack.Screen 
         name="Register"
         component={RegisterScreen}
         options={{ title: "S'inscrire" }}
-      />
+      /> */}
     </Stack.Navigator>
   )
 }

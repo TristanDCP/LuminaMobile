@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-import { Card  } from 'react-native-elements';
+import { Card  } from 'react-native-elements'
 import { useAuth } from '../../providers/auth'
+import * as WebBrowser from 'expo-web-browser'
 
 // A faire: récupérer les roles pour proposer des actions pertinentes
 // A finir: Ouverture du PDF stockés en local avec une librairie de PDF sur la page générer un état des lieux
@@ -29,14 +30,15 @@ export default function Home(props) {
               </Text>
           </TouchableOpacity>
           : null }
-          {user.idRole == 2 ?
+          {/* {user.idRole == 2 ? */}
           <TouchableOpacity 
             style={{width: 350,height: 50,color: 'white',backgroundColor: 'pink',textAlign:'center',justifyContent: 'center',padding: 10,marginTop: 10}} 
-            onPress={()=> navigate('GeneratePDF')}>
+            onPress={()=> WebBrowser.openBrowserAsync("https://form.jotform.com/211815918670359")}>
               <Text style={{textAlign: 'center', fontWeight: 'bold'}}>
                 Générer un état des lieux
               </Text>
-          </TouchableOpacity> : null }
+          </TouchableOpacity>
+           {/* : null } */}
           <TouchableOpacity 
             style={{width: 350,height: 50,color: 'white',backgroundColor: 'pink',textAlign:'center',justifyContent: 'center',padding: 10,marginTop: 10}} 
             onPress={()=> navigate('UpdateProfil')}>

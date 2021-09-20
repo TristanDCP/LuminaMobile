@@ -4,9 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import { useAuth } from '../providers/auth';
-import HomeScreen from '../screens/home/Home';
-import CalendarScreen from '../screens/home/Calendar';
-import UpdateProfileScreen from '../screens/home/UpdateProfile';
 
 const Tab = createBottomTabNavigator()
 
@@ -30,27 +27,6 @@ export default function HomeStack(props) {
       }}
     >
       <Tab.Navigator>
-        <Tab.Screen 
-          name="Accueil" 
-          component={HomeScreen}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
-          }}
-        />
-        <Tab.Screen 
-          name="Calendrier" 
-          component={CalendarScreen}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
-          }}calendar
-        />
-        <Tab.Screen 
-          name="Profil" 
-          component={UpdateProfileScreen}
-          options={{
-            tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
-          }}
-        />
         <Tab.Screen 
           name="Logout"
           component={SignoutScreen}
