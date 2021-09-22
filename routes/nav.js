@@ -11,7 +11,7 @@ import { useAuth } from '../providers/auth';
 export default function Nav() {
   
   const { state } = useAuth()
-  console.log(state)
+  //console.log(state)
 
   if(state.isLoading) {
     return <AuthLoading />
