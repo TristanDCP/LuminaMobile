@@ -2,6 +2,7 @@ import React, { useMemo, useReducer, useContext } from 'react'
 // import { AsyncStorage } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios'
+//import jwt_decode from 'jwt-decode'
 
 // Import reducer, initial state & actions
 import reducer, { initialState, LOGGED_IN, LOGGED_OUT } from '../reducer'
@@ -38,6 +39,7 @@ function AuthProvider(props) {
       // Store data
       let { token, user } = data
       let data_ = [[USER_KEY, JSON.stringify(user)], [TOKEN_KEY, token]]
+
       await AsyncStorage.multiSet((data_))
 
       // Axios authorization header
@@ -84,7 +86,7 @@ function AuthProvider(props) {
 
   return(
     <AuthContext.Provider value={value}>
-      {props.children}
+      {props.children} 
     </AuthContext.Provider>
   )
 }

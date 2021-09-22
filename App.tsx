@@ -1,8 +1,7 @@
-import 'react-native-gesture-handler';
 import React from 'react';
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
+import { NavigationContainer } from '@react-navigation/native';
+
 import Router from './router';
 
 if(__DEV__) {
@@ -10,14 +9,15 @@ if(__DEV__) {
 }
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
+  return(
+    <NavigationContainer tabBarOptions={{
+      activeBackgroundColor: '#298EA6',
+      inactiveBackgroundColor: '#47A8BD',
+      activeTintColor: "white",
+      inactiveTintColor: "white"
+    }}>
       <Router />
-    );
-  }
+    </NavigationContainer>
+    
+  )
 }

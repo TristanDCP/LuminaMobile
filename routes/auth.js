@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,36 +16,27 @@ import { headerStyle, headerTitleStyle } from '../theme'
 
 const Tab = createBottomTabNavigator()
 
-export default function AuthStack(props) {
+export default function AuthStack() {
 
   //const { navigate } = props.navigation
 
   return(
-    <NavigationContainer
-      tabBarOptions={{
-        activeBackgroundColor: '#298EA6',
-        inactiveBackgroundColor: '#47A8BD',
-        activeTintColor: "white",
-        inactiveTintColor: "white"
-      }}
-    >
-      <Tab.Navigator>
-        <Tab.Screen 
-          name="Accueil"
-          component={DefaultStackNavigator}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
-          }}
-        />
-        <Tab.Screen 
-          name="Se connecter"
-          component={LoginStackNavigator}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="log-in"  color={color} />,
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen 
+        name="Accueil"
+        component={DefaultStackNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
+        }}
+      />
+      <Tab.Screen 
+        name="Se connecter"
+        component={LoginStackNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="log-in"  color={color} />,
+        }}
+      />
+    </Tab.Navigator>
   )
 }
 

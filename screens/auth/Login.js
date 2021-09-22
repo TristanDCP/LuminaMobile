@@ -8,8 +8,6 @@ import Form, { TYPES } from 'react-native-basic-form'
 import CTA from '../../components/CTA'
 import { Header, ErrorText } from '../../components/Shared'
 
-import { StackActions, CommonActions } from '@react-navigation/native'
-
 export default function Login(props) {
   const { navigation } = props
   //const { navigate } = navigation
@@ -34,12 +32,9 @@ export default function Login(props) {
 
       setLoading(false)
 
-      let username = (response.user.username !== null)
-      if(username) { 
-        navigation.navigate('Dashboard', { user: response.user})
-      
-      
-     } else navigation.replace('Username')
+      let token = (response.token !== null)
+      if(token) navigation.navigate('Dashboard')
+      else navigation.replace('Login')
     } catch(error) {
       setError(error.message)
       setLoading(false)

@@ -4,12 +4,11 @@ import {
   View,
   Text
 } from 'react-native'
-import { StackActions } from '@react-navigation/native'
 
 import { useAuth } from '../../providers/auth'
 
 export default function AuthLoading(props) {
-  //const { navigate } = props.navigation
+  const { navigate } = props.navigation
   const { getAuthState } = useAuth()
 
   useEffect(() => {
@@ -19,16 +18,18 @@ export default function AuthLoading(props) {
   async function initialize() {
     try {
       const { user } = await getAuthState()
+      console.log(user)
 
       if(user) {
-        let username = !!(user.username)
+        let idUser = !!(user.idUser)
         
-        if(username) navigation.navigate('App')
-        else navigation.navigate('Auth', {}, StackActions.replace({ routeName: "Dashboard" }))
+        if(idUser) navigate('App')
+        else navigate('Auth', {}, StackActions.replace({ routeName: "Dashboard" }))
+        //else navigate('App')
         
-      } else navigation.navigate('Auth')
+      } else navigate('App')
     } catch(e) {
-      navigation.navigate('Auth')
+      navigate('App')
     }
   }
 
