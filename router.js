@@ -1,38 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
 // Import Routes
-//import AuthStack from './routes/auth'
-//import HomeStack from './routes/home'
+import AuthStack from './routes/auth'
+import HomeStack from './routes/home'
 
-//import AuthLoading from './screens/auth/AuthLoading'
+import AuthLoading from './screens/auth/AuthLoading'
 import AuthProvider from './providers/auth'
 
-import Reactotron from 'reactotron-react-native'
-import { useIsFocused } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const AppStack = createSwitchNavigator(
+  {
+    Loading: AuthLoading,
+    Auth: AuthStack,
+    App: HomeStack
+  },
+  {
+    initialRouteName: 'Loading'
+  }
+)
 
-import { useAuth, AuthContext } from './providers/auth'
-import Nav from "./routes/nav"
+const Navigator = createAppContainer(AppStack)
 
-// const AppStack = createSwitchNavigator(
-//   {
-//     Loading: AuthLoading,
-//     Auth: AuthStack,
-//     App: HomeStack
-//   },
-//   {
-//     initialRouteName: 'Loading'
-//   }
-// )
-
-// const Navigator = createAppContainer(AppStack)
-
-export default function Router() {
-
+export default function Router(props) {
   return(
     <AuthProvider>
-      <Nav />  
+      <Navigator />
     </AuthProvider>
   )
 }
