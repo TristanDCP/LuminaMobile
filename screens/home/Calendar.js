@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Dimensions
-} from 'react-native';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { SafeAreaView, StyleSheet, View, Dimensions, Text, Alert } from 'react-native';
 import moment from "moment";
-
 import EventCalendar from 'react-native-events-calendar';
 
 import * as api from '../../services/auth';
 import { useAuth } from '../../providers/auth';
-import { ErrorText } from '../../components/Shared';
 
-//get the size of device
 let {width} = Dimensions.get('window');
 
 const Agenda = () => {
@@ -22,51 +13,10 @@ const Agenda = () => {
   const { state } = useAuth()
   const [error, setError] = useState(null)
   const [events, setEvents] = useState([])
-  // const [events, setEvents] = useState([
-  //   {
-  //     start: '2021-07-09 14:00:00',
-  //     end: '2021-07-09 15:30:00',
-  //     title: 'New Year Party',
-  //     summary: 'xyz Location',
-  //   },
-  //   {
-  //     start: '2020-01-01 01:00:00',
-  //     end: '2020-01-01 02:00:00',
-  //     title: 'New Year Wishes',
-  //     summary: 'Call to every one',
-  //   },
-  //   {
-  //     start: '2020-01-02 00:30:00',
-  //     end: '2020-01-02 01:30:00',
-  //     title: 'Parag Birthday Party',
-  //     summary: 'Call him',
-  //   },
-  //   {
-  //     start: '2020-01-03 01:30:00',
-  //     end: '2020-01-03 02:20:00',
-  //     title: 'My Birthday Party',
-  //     summary: 'Lets Enjoy',
-  //   },
-  //   {
-  //     start: '2020-02-04 04:10:00',
-  //     end: '2020-02-04 04:40:00',
-  //     title: 'Engg Expo 2020',
-  //     summary: 'Expoo Vanue not confirm',
-  //   },
-  // ]);
+  const user = state.user
 
-
-  
-  
-  //   {
-  //     start: '2021-07-09 14:00:00',
-  //     end: '2021-07-09 15:30:00',
-  //     title: 'New Year Party',
-  //     summary: 'xyz Location',
-  //   },
   useEffect( () => {
     api.appointmentsList().then(response => {
-      //setEvents(response.appointment.filter(result => result.idUser === state.user.idUser))
       let data = response.appointment.filter(result => result.idUser === state.user.idUser)
       console.log(data)
       setEvents({
@@ -75,19 +25,37 @@ const Agenda = () => {
         title: data[0].appointmentMotif,
         summary: data[0].appointmentType
       })
-    }).catch( err => setError(err) )
+    }).catch( err => setError("Vous n'avez pas encore pris RDV avec notre agence :)") )
   }, [state.token, state.user.idUser])
 
   const eventClicked = (event) => {
     //On Click of event showing alert from here
-    alert(JSON.stringify(event));
+    Alert.alert(
+      `${event}`,
+      "My Alert Msg",
+      [
+        {
+          text: "Ask me later",
+          onPress: () => console.log("Ask me later pressed")
+        },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
   };
   
   
   return(
     <SafeAreaView style={styles.container}>
-      <ErrorText error={error} />
+      {/* <ErrorText error={error} /> */}
       <View style={styles.container}>
+        <Text style={{color: 'purple', fontWeight: 'bold', marginBottom: 10}}>{error}</Text>
+        { user.role == 1 ? 
+        <Text>Votre prochain RDV est le {events.appointmentDate} avec pour objet {events.appointmentMotif} </Text> :
         <EventCalendar
           eventTapped={eventClicked}
           // Function on event press
@@ -104,6 +72,7 @@ const Agenda = () => {
           scrollToFirst
           // Scroll to first event of the day (default true)
         />
+        }
       </View>
     </SafeAreaView>
   ) 
@@ -117,6 +86,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 15
   },
+  error: {
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 24, 
+  }
 });
 
 export default Agenda

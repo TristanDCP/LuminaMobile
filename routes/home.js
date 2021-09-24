@@ -7,7 +7,7 @@ import { useAuth } from '../providers/auth';
 //import HomeScreen from '../screens/home/Home';
 import HomeScreen from '../screens/HomePageScreen';
 import CalendarScreen from '../screens/home/Calendar';
-import UpdateProfileScreen from '../screens/home/UpdateProfile';
+import ProfileScreen from '../screens/home/Profile';
 
 const Tab = createBottomTabNavigator()
 
@@ -39,7 +39,7 @@ export default function HomeStack(props) {
       />
       <Tab.Screen 
         name="Profil" 
-        component={UpdateProfileScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
         }}

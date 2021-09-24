@@ -42,27 +42,33 @@ export default function HomePage(){
           return (
             //console.log('NEW'),
             <Card key={items.toString()}>
-            <Card.Title>Type de propriété : {properties[items]["parameters"][1].valueParameter}</Card.Title>
+             <Card.Title>{ properties[items]["parameters"][1].valueParameter == 'Appartement' ? 'Superbe ' : 'Magnifique '}
+                        {properties[items]["parameters"][1].valueParameter.toLowerCase()} de {properties[items]["parameters"][3].valueParameter} pièces !</Card.Title>
             <Card.Divider/>
               <Card.Image source={{ uri: properties[items]["parameters"][8].valueParameter.toString() }}></Card.Image>
             <Card.Divider/>
-              <Text style={{marginBottom: 10}}>
-              {properties[items]["parameters"][2].valueParameter}, {properties[items]["parameters"][4].valueParameter} , {properties[items]["parameters"][5].valueParameter}, {properties[items]["parameters"][7].valueParameter} , {properties[items]["parameters"][0].valueParameter}€
-                </Text>
+              <Text style={{fontWeight: 'bold', color: 'red', textAlign: 'right'}}>{properties[items]["parameters"][0].valueParameter}€</Text>
+              <Text><Text style={{fontWeight: 'bold'}}>Ville: </Text>{properties[items]["parameters"][5].valueParameter} {properties[items]["parameters"][4].valueParameter}</Text>   
+              <Text><Text style={{fontWeight: 'bold'}}>Superficie: </Text>{properties[items]["parameters"][2].valueParameter}</Text>   
+              <Text style={{textAlign: 'right', marginBottom: 10}}>{properties[items]["parameters"][7].valueParameter}</Text>
+              
                 
-              <Button onPress={() => navigation.navigate('PropertyDetails' , 
-              { idProperty: properties[items].idProperty,
-                prix: properties[items]["parameters"][0].valueParameter,
-                logementType: properties[items]["parameters"][1].valueParameter,
-                surface: properties[items]["parameters"][2].valueParameter,
-                nombrepiece: properties[items]["parameters"][3].valueParameter,
-                ville: properties[items]["parameters"][4].valueParameter,
-                codePostal: properties[items]["parameters"][5].valueParameter,
-                orientation: properties[items]["parameters"][6].valueParameter,
-                specificite: properties[items]["parameters"][7].valueParameter,
-                image: properties[items]["parameters"][8].valueParameter,
-            })}
-                title="+ d'informations" />
+              <Button 
+                onPress={() => navigation.navigate('PropertyDetails' , 
+                  { idProperty: properties[items].idProperty,
+                    prix: properties[items]["parameters"][0].valueParameter,
+                    logementType: properties[items]["parameters"][1].valueParameter,
+                    surface: properties[items]["parameters"][2].valueParameter,
+                    nombrepiece: properties[items]["parameters"][3].valueParameter,
+                    ville: properties[items]["parameters"][4].valueParameter,
+                    codePostal: properties[items]["parameters"][5].valueParameter,
+                    orientation: properties[items]["parameters"][6].valueParameter,
+                    specificite: properties[items]["parameters"][7].valueParameter,
+                    image: properties[items]["parameters"][8].valueParameter,
+                })}
+                title="+ d'informations"  
+                color="#841584" />
+                
             </Card>
             )
             }  
