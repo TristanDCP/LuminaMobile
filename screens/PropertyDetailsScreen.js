@@ -43,7 +43,7 @@ return(
         <Text><Text style={{fontWeight: 'bold'}}>Orientation: </Text>{props.route.params['orientation']}</Text>
         <Text style={{textAlign: 'right', marginBottom: 10}}>{props.route.params['specificite']}</Text>          
         <Button onPress={() => navigation.navigate('Accueil')}
-          title="Voir les autres biens" />
+          title="Voir les autres biens " />
       </Card>
 </View>
 <View>
