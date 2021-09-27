@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View, Text, Image, StyleSheet } from 'react-native';
 import { Card, ListItem, Button, Icon  } from 'react-native-elements';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function HomePage(){
