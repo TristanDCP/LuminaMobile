@@ -1,4 +1,5 @@
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as c from '../constants'
 
 export async function register(data) {
@@ -39,7 +40,7 @@ export async function updateProfile(userId, data) {
 }
 
 export async function appointmentsList() {
-  try {
+  try {    
     let res = await axios.get(c.APPOINTMENT_LIST)
 
     return res.data

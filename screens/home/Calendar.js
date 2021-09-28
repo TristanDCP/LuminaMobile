@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
+  Text,
   Dimensions
 } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
@@ -13,6 +14,7 @@ import EventCalendar from 'react-native-events-calendar';
 import * as api from '../../services/auth';
 import { useAuth } from '../../providers/auth';
 import { ErrorText } from '../../components/Shared';
+import {AppointmentType} from '../../hooks/appointmentHelp';
 
 //get the size of device
 let {width} = Dimensions.get('window');
@@ -68,13 +70,21 @@ const Agenda = () => {
     api.appointmentsList().then(response => {
       //setEvents(response.appointment.filter(result => result.idUser === state.user.idUser))
       let data = response.appointment.filter(result => result.idUser === state.user.idUser)
-      console.log(data)
-      setEvents({
-        start: data[0].appointmentDate,
-        end: data[0].appointmentDate,
-        title: data[0].appointmentMotif,
-        summary: data[0].appointmentType
+
+      data.map(singleAppointment => {
+        setEvents(events => ({ ...events, 
+            start: singleAppointment.appointmentDate,
+            end: singleAppointment.appointmentDate,
+            title: singleAppointment.appointmentMotif,
+            summary: AppointmentType(singleAppointment.appointmentType)
+        }))
       })
+      // setEvents({
+      //   start: data[0].appointmentDate,
+      //   end: data[0].appointmentDate,
+      //   title: data[0].appointmentMotif,
+      //   summary: data[0].appointmentType
+      // })
     }).catch( err => setError(err) )
   }, [state.token, state.user.idUser])
 
@@ -86,9 +96,11 @@ const Agenda = () => {
   
   return(
     <SafeAreaView style={styles.container}>
-      <ErrorText error={error} />
-      <View style={styles.container}>
-        <EventCalendar
+      {/* <ErrorText error={error} /> */}
+      <View>
+        <Text>Some Text</Text>
+        <Text>{JSON.stringify(events)}</Text>
+        {/* <EventCalendar
           eventTapped={eventClicked}
           // Function on event press
           events={events}
@@ -103,7 +115,7 @@ const Agenda = () => {
           // Show initial date (default is today)
           scrollToFirst
           // Scroll to first event of the day (default true)
-        />
+        /> */}
       </View>
     </SafeAreaView>
   ) 

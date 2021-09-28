@@ -9,6 +9,8 @@ import HomeStack from './routes/home'
 import AuthLoading from './screens/auth/AuthLoading'
 import AuthProvider from './providers/auth'
 
+import Nav from './routes/nav'
+
 const AppStack = createSwitchNavigator(
   {
     Loading: AuthLoading,
@@ -22,10 +24,10 @@ const AppStack = createSwitchNavigator(
 
 const Navigator = createAppContainer(AppStack)
 
-export default function Router(props) {
+export default function Router() {
   return(
     <AuthProvider>
-      <Navigator />
+      <Nav />
     </AuthProvider>
   )
 }

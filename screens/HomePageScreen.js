@@ -233,8 +233,8 @@ export default function HomePage() {
                 {
                     checkboxes.map((cb, index) => {
                         return (
-                            <TouchableOpacity onPress={() => toggleCheckBox(cb.id, index)}>
-                                <View style={{ flexDirection: 'row' }} key={cb.id}>
+                            <TouchableOpacity onPress={() => toggleCheckBox(cb.id, index)}  key={cb.id}>
+                                <View style={{ flexDirection: 'row' }}>
                                     <Checkbox
                                         key={cb.id}
                                         checked={cb.checked}
