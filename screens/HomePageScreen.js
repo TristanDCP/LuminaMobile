@@ -98,8 +98,8 @@ export default function HomePage() {
 
 
     const handleSubmit = () => {
-        alert(JSON.stringify(valueParameterArray));
-        // allPropertyDatas({ 'property' : propertiesFiltered(Object.values(properties.property), Object.entries(valueParameterArray))});
+        // alert(JSON.stringify(valueParameterArray));
+        allPropertyDatas({ 'property' : propertiesFiltered(Object.values(properties.property), Object.entries(valueParameterArray))});
     }
 
     if (isLoading) {
@@ -230,7 +230,7 @@ export default function HomePage() {
                     }}
                     value={pieceProperties}
                 />
-                {
+                {/* {
                     checkboxes.map((cb, index) => {
                         return (
                             <TouchableOpacity onPress={() => toggleCheckBox(cb.id, index)}  key={cb.id}>
@@ -245,7 +245,7 @@ export default function HomePage() {
 
                         )
                     })
-                }
+                } */}
                 <Button
                     title="Filtrer"
                     onPress={() => handleSubmit()}
