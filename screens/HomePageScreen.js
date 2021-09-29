@@ -99,7 +99,7 @@ export default function HomePage() {
 
     const handleSubmit = () => {
         // alert(JSON.stringify(valueParameterArray));
-        allPropertyDatas({ 'property' : propertiesFiltered(Object.values(properties.property), Object.entries(valueParameterArray))});
+        allPropertyDatas({ 'property': propertiesFiltered(Object.values(properties.property), Object.entries(valueParameterArray)) });
     }
 
     if (isLoading) {
@@ -253,25 +253,25 @@ export default function HomePage() {
 
             </View>
             <View>
-                {Object.keys(properties.property).map((items) => {
-                    return (
-                        <Card key={items.toString()}>
-                            <Card.Title>Type de propriété : {properties.property[items]["parameters"][1].valueParameter}</Card.Title>
-                            <Card.Divider />
-                            <Card.Image source={{ uri: properties.property[items]["parameters"][8].valueParameter.toString() }}></Card.Image>
-                            <Card.Divider />
-                            <Text style={{ marginBottom: 10 }}>
-                                {properties.property[items]["parameters"][2].valueParameter}, {properties.property[items]["parameters"][4].valueParameter} , {properties.property[items]["parameters"][5].valueParameter}, {properties.property[items]["parameters"][7].valueParameter} , {properties.property[items]["parameters"][0].valueParameter}€
-                            </Text>
+                {
+                    Object.keys(properties.property).map((items) => {
+                        return (
+                            <Card key={items.toString()}>
+                                <Card.Title>Type de propriété : {properties.property[items]["parameters"][1].valueParameter}</Card.Title>
+                                <Card.Divider />
+                                <Card.Image source={{ uri: properties.property[items]["parameters"][8].valueParameter.toString() }}></Card.Image>
+                                <Card.Divider />
+                                <Text style={{ marginBottom: 10 }}>
+                                    {properties.property[items]["parameters"][2].valueParameter}, {properties.property[items]["parameters"][4].valueParameter} , {properties.property[items]["parameters"][5].valueParameter}, {properties.property[items]["parameters"][7].valueParameter} , {properties.property[items]["parameters"][0].valueParameter}€
+                                </Text>
 
-                            <Button
-                                onPress={() => navigation.navigate('PropertyDetails', { idProperty: properties.property[items].idProperty })}
-                                title="+ d'informations"
-                            />
-                        </Card>
-                    )
-                }
-                )
+                                <Button
+                                    onPress={() => navigation.navigate('PropertyDetails', { idProperty: properties.property[items].idProperty })}
+                                    title="+ d'informations"
+                                />
+                            </Card>
+                        )
+                    })
                 }
             </View>
         </ScrollView>

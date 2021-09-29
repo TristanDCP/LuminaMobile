@@ -11,6 +11,7 @@ import PropertyDetailsScreen from '../screens/PropertyDetailsScreen';
 import RegisterScreen from '../screens/auth/Register';
 import LoginScreen from '../screens/auth/Login';
 import ForgotPasswordScreen from '../screens/auth/ForgotPassword';
+import AgenciesListScreen from '../screens/home/agencies';
 
 import { headerStyle, headerTitleStyle } from '../theme'
 
@@ -25,6 +26,13 @@ export default function AuthStack() {
       <Tab.Screen 
         name="Accueil"
         component={DefaultStackNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Agences"
+        component={AgenciesListScreen}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
         }}

@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomePageScreen';
 import { DefaultStackNavigator } from './auth';
 import CalendarScreen from '../screens/home/Calendar';
 import UpdateProfileScreen from '../screens/home/UpdateProfile';
+import AgenciesListScreen from '../screens/home/agencies';
 
 
 const Tab = createBottomTabNavigator()
@@ -33,6 +34,13 @@ export default function HomeStack(props) {
         component={DefaultStackNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Agences"
+        component={AgenciesListScreen}
+        options={{
+          tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
         }}
       />
       <Tab.Screen
