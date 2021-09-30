@@ -29,7 +29,6 @@ const Agenda = () => {
   }, [state.token, state.user.idUser])
 
   const eventClicked = (event) => {
-    //On Click of event showing alert from here
     Alert.alert(
       `${event}`,
       "My Alert Msg",
@@ -51,26 +50,17 @@ const Agenda = () => {
   
   return(
     <SafeAreaView style={styles.container}>
-      {/* <ErrorText error={error} /> */}
       <View style={styles.container}>
         <Text style={{color: 'purple', fontWeight: 'bold', marginBottom: 10}}>{error}</Text>
         { user.role == 1 ? 
         <Text>Votre prochain RDV est le {events.appointmentDate} avec pour objet {events.appointmentMotif} </Text> :
         <EventCalendar
           eventTapped={eventClicked}
-          // Function on event press
           events={events}
-          // Passing the Array of event
           width={width}
-          // Container width
           size={60}
-          // number of date will render before and after initDate
-          // (default is 30 will render 30 day before initDate
-          // and 29 day after initDate)
           initDate={moment().toDate()}
-          // Show initial date (default is today)
           scrollToFirst
-          // Scroll to first event of the day (default true)
         />
         }
       </View>

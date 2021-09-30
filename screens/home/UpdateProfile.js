@@ -1,4 +1,4 @@
-import React, { useState, useContext }  from 'react';
+import React, { useState }  from 'react';
 import { View } from 'react-native';
 
 import * as api from '../../services/auth';
@@ -22,14 +22,10 @@ export default function UpdateProfile(props) {
 
   async function onSubmit(data) {
     setLoading(true)
-
     try {
       let response = await api.updateProfile(state.user.idUser, data)
-
       updateUser(response.user)
-
       setLoading(false)
-
       navigation.goBack()
     } catch(error) {
       console.log(error)

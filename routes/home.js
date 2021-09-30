@@ -8,6 +8,8 @@ import { useAuth } from '../providers/auth';
 import HomeScreen from '../screens/HomePageScreen';
 import CalendarScreen from '../screens/home/Calendar';
 import ProfileScreen from '../screens/home/Profile';
+import GeneratePDFScreen from '../screens/home/GeneratePDF';
+
 
 const Tab = createBottomTabNavigator()
 
@@ -40,6 +42,13 @@ export default function HomeStack(props) {
       <Tab.Screen 
         name="Profil" 
         component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
+        }}
+      />
+      <Tab.Screen 
+        name="Generer un état des lieux" 
+        component={GeneratePDFScreen}
         options={{
           tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
         }}

@@ -1,5 +1,4 @@
-import { NavigationHelpersContext } from '@react-navigation/core';
-import React, { useState, useContext }  from 'react';
+import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useAuth } from '../../providers/auth';
 
@@ -8,7 +7,6 @@ export default function Profile(props) {
   const { state } = useAuth()
   const { navigation } = props
   const user = state.user
-
 
   return(
     <View style={{
@@ -20,12 +18,12 @@ export default function Profile(props) {
     }}>
         <Text style={{fontSize: 18, textAlign: 'center', color: 'purple'}}>Bonjour {user.userFirstname} </Text>
         <Button  
-            onPress={navigation.navigate('UpdateProfile')}  
+            onPress={() => {navigation.navigate('UpdateProfile')}}  
             title="Modifier mon profil"  
             color="#841584"  
             accessibilityLabel="Modifier mon profil"/>
         <Button  
-            onPress={navigation.navigate('UpdateProfile')}  
+            onPress={() => {navigation.navigate('GeneratePDF')}}  
             title="Créer un état des lieux"  
             color="#841584"  
             accessibilityLabel="Créer un état des lieux"/>

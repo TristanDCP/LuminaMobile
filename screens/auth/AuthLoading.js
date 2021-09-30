@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react'
-import {
-  ActivityIndicator,
-  View,
-  Text
-} from 'react-native'
-
+import { ActivityIndicator, View, Text } from 'react-native'
 import { useAuth } from '../../providers/auth'
 
 export default function AuthLoading(props) {
