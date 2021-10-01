@@ -6,9 +6,7 @@ import * as Sharing from "expo-sharing";
 import { useAuth } from '../../providers/auth'
 import Form, { TYPES } from 'react-native-basic-form';
 
-export default function Home(props) {
-  const { navigate } = props.navigation
-  
+export default function GeneratePDF() {  
   const { state, handleLogout } = useAuth()
   
   const [ error, setError ] = useState(null)
@@ -18,13 +16,11 @@ export default function Home(props) {
   const [ settLodger, isSetLodger ] = useState(false)
   const [ settPiece, isSetPiece ] = useState(false)
 
+  // Mise en forme HTML
   let header = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"></head><body><h1>Etat des lieux</h1>`;
   let footer = `</body></html>`;
-  let arrayAdress = "";
-  let arrayOwner = "";
-  let arrayLodger = "";
-  let arrayPiece = "";
 
+  // Options pour l\état des pages
   const options = [
     {label:"Mauvais", value: "Mauvais état"},
     {label:"Correct", value: "Etat correct"},
@@ -32,6 +28,7 @@ export default function Home(props) {
     {label:"Neuf", value: "Neuf"},
   ];
 
+  // Champ du formulaire d'adresse
   const AdressFields = [
     {name: 'adress', label: 'Adresse: ', required: true, autoCapitalize: "none", autoCorrect: false },
     {name: 'adress_complement', label: 'Complément d\'adresse: ', required: true, autoCapitalize: "none", autoCorrect: false},
@@ -40,20 +37,23 @@ export default function Home(props) {
       {name: 'start_date', label: 'START DATE', required: true, type: TYPES.Date},
       {name: 'end_date', label: 'END DATE', required: true, type: TYPES.Date}
     ]
-
   ];
+  
+  // Champ du formulaire sur le propriétaire
   const OwnerFields = [
     {name: 'ownerName', label: 'Nom: ', required: true, autoCapitalize: "none", autoCorrect: false },
     {name: 'ownerTel', label: 'Téléphone: ', required: true,type:TYPES.Number},
     {name: 'ownerEmail', label: 'Email: ', required: true, type: TYPES.Email,},
   ];
 
+  // Champ du formulaire sur le locataire
   const LodgerFields = [
     {name: 'lodgerName', label: 'Nom: ', required: true, autoCapitalize: "none", autoCorrect: false },
     {name: 'lodgerTel', label: 'Téléphone: ', required: true,type:TYPES.Number},
     {name: 'lodgerEmail', label: 'Email: ', required: true, type: TYPES.Email,},
   ];
 
+  // Champ du formulaire sur les informations d'une piece
   const PieceFields = [
     {name: 'namePiece', label: 'Nom de la pièce: ', required: true, autoCapitalize: "none", autoCorrect: false },
     {name: 'ground_condition', label: 'Etat du sol', required: true, type: TYPES.Dropdown, options: options},
@@ -66,11 +66,14 @@ export default function Home(props) {
   async function onSubmitAll(data) {
     setLoading(true)
     try {
-      // Vérification à faire
-      let htmlContent = header + arrayAdress + arrayOwner + arrayLodger + arrayPiece + footer;
-      createAndSavePDF(htmlContent);
+      if( settAdress && settOwner && settLodger && settPiece ){
+        let htmlContent = header + settAdress + settOwner + settLodger + settPiece + footer;
+        console.log(htmlContent)
+        createAndSavePDF(htmlContent)
+      } else {
+        alert("Certains champs n'ont pas été validés.")
+      }  
       setLoading(false)
-      navigation.goBack()
     } catch(error) {
       console.log(error)
       setError(error.message)
@@ -80,8 +83,7 @@ export default function Home(props) {
 
   async function onSubmitAdress(data) {
     try {
-      arrayAdress = `<div style="border: 1px solid black;"><p>`+ data.adress +`</p><p>`+ data.adress_complement +`</p><p>`+ data.property_type +`</p></div></div>`;
-      isSetAdress(true)
+      isSetAdress(`<div style="border: 1px solid black;"><p>`+ data.adress +`</p><p>`+ data.adress_complement +`</p><p>`+ data.property_type +`</p></div>`)
     } catch(error) {
       setError(error.message)
     }
@@ -89,8 +91,7 @@ export default function Home(props) {
 
   async function onSubmitOwner(data) {
     try {
-      arrayOwner = `<div style="border: 1px solid black;"><p>`+ data.ownerName +`</p><p>`+ data.ownerTel +`</p><p>`+ data.ownerEmail +`</p></div></div>`;
-      isSetOwner(true)
+      isSetOwner(`<div style="border: 1px solid black;"><p>`+ data.ownerName +`</p><p>`+ data.ownerTel +`</p><p>`+ data.ownerEmail +`</p></div>`)
     } catch(error) {
       setError(error.message)
     }
@@ -98,8 +99,7 @@ export default function Home(props) {
 
   async function onSubmitLodger(data) {
     try {
-      arrayLodger = `<div style="border: 1px solid black;"><p>`+ data.lodgerName +`</p><p>`+ data.lodgerTel +`</p><p>`+ data.lodgerEmail +`</p></div></div>`;
-      isSetLodger(true)
+      isSetLodger(`<div style="border: 1px solid black;"><p>`+ data.lodgerName +`</p><p>`+ data.lodgerTel +`</p><p>`+ data.lodgerEmail +`</p></div>`)
     } catch(error) {
       setError(error.message)
     }
@@ -107,8 +107,7 @@ export default function Home(props) {
 
   async function onSubmitPiece(data) {
     try {
-      arrayPiece = `<div style="border: 1px solid black;"><p>`+ data.ground_condition +`</p><p>`+ data.wall_condition +`</p><p>`+ data.ceiling_condition +`</p><p>`+ data.plinth_condition+ `</p><p>`+ data.notePiece+ `</p></div></div>`;
-      isSetPiece(true)
+      isSetPiece(`<div style="border: 1px solid black;"><p>`+ data.ground_condition +`</p><p>`+ data.wall_condition +`</p><p>`+ data.ceiling_condition +`</p><p>`+ data.plinth_condition+ `</p><p>`+ data.notePiece+ `</p></div>`)
     } catch(error) {
       setError(error.message)
     }
@@ -118,8 +117,6 @@ export default function Home(props) {
     Print.printToFileAsync({
       html: html,
     }).then((filepath) => {
-      console.log("num pages", filepath.numberOfPages);
-
       Sharing.shareAsync(filepath.uri, {
         mimeType: "application/pdf",
         dialogTitle: "Et voilà votre PDF",
@@ -177,6 +174,8 @@ export default function Home(props) {
         <Button
         title="Générer l'état des lieux"
         onPress={onSubmitAll}
+        color="#704EA6"
+        style={styles.generate}
         />
       </View>  
     </ScrollView>
@@ -219,5 +218,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       fontSize: 24, 
-    }
+    },
+    generate: {
+      width: 350,
+      color: 'red',
+    },
   });
