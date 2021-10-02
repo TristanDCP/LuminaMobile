@@ -29,9 +29,11 @@ export default function Agencies() {
                                     <Card.Divider />
                                     <Card.Image source={{ uri: "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" }}></Card.Image>
                                     <Card.Divider />
-                                    <Text style={{ marginBottom: 10 }}>
-                                        {singleAgency.agencyContact}, {singleAgency.agencyPhone} , {singleAgency.agencyAdr}
-                                    </Text>
+                                    <Text style={{ fontWeight: 'bold', textAlign: 'center', fontSize: 16 }}>{singleAgency.agencyName}</Text>
+
+                                    <Text><Text style={{ fontWeight: 'bold' }}>Mail de l'agence: </Text>{singleAgency.agencyContact}</Text>
+                                    <Text><Text style={{ fontWeight: 'bold' }}>Téléphone de l'agence: </Text>{singleAgency.agencyPhone}</Text>
+                                    <Text><Text style={{ fontWeight: 'bold' }}>Adresse de l'agence: </Text>{singleAgency.agencyAdr}</Text>
                                 </Card>
                             )
                         })

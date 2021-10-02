@@ -34,7 +34,7 @@ export default function AuthStack() {
         name="Agences"
         component={AgenciesListScreen}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="md-home" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-list" color={color} />,
         }}
       />
       <Tab.Screen 

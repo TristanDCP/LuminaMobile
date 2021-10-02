@@ -1,17 +1,14 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import { useAuth } from '../providers/auth';
 
-import HomeScreen from '../screens/HomePageScreen';
-
 import { DefaultStackNavigator } from './auth';
 import CalendarScreen from '../screens/home/Calendar';
 import UpdateProfileScreen from '../screens/home/UpdateProfile';
 import AgenciesListScreen from '../screens/home/agencies';
-
+import GeneratePDFScreen from '../screens/home/GeneratePDF';
 
 const Tab = createBottomTabNavigator()
 
@@ -40,7 +37,7 @@ export default function HomeStack(props) {
         name="Agences"
         component={AgenciesListScreen}
         options={{
-          tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
+          tabBarIcon: ({ color }) => <AntDesign name="bars" size={30} color={color} />,
         }}
       />
       <Tab.Screen
@@ -55,6 +52,13 @@ export default function HomeStack(props) {
         component={UpdateProfileScreen}
         options={{
           tabBarIcon: ({ color }) => <AntDesign name="user" size={30} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="État des Lieux"
+        component={GeneratePDFScreen}
+        options={{
+          tabBarIcon: ({ color }) => <AntDesign name="pdffile1" size={30} color={color} />,
         }}
       />
       <Tab.Screen

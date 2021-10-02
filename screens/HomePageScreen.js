@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView, View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { Card, Button } from 'react-native-elements';
+import { ScrollView, View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { Card } from 'react-native-elements';
 
 import Slider from '@react-native-community/slider';
 import Checkbox from '@react-native-community/checkbox';
@@ -112,162 +112,127 @@ export default function HomePage() {
 
     return (
         <ScrollView>
-            <View>
-                <Text>Prix :</Text>
-                <Slider
-                    maximumValue={850000}
-                    minimumValue={0}
-                    minimumTrackTintColor='#298EA6'
-                    maximumTrackTintColor='#47A8BD'
-                    step={10000}
-                    onValueChange={(newValue) => {
-                        setSliderValue(newValue);
-                        setValueParameters(valueParameter => ({ ...valueParameter, "Prix": sliderValue }));
-                    }}
-                    value={sliderValue}
-                />
+            <Card>
+                <Text style={{ fontSize: 18, color: '#704EA6', fontWeight: 'bold', textAlign: 'center', }}>Rechercher un bien</Text>
+                    <Text>Type de Propriété :</Text>
+                    <RadioButton.Group
+                        value={typeProperties}
+                    >
+                        <View style={{ width: 300, height: 30 }}>
+                            <RadioButton.Item
+                                value='Maison'
+                                label='Maison'
+                                onPress={() => {
+                                    setTypeProperties('Maison');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Maison' }))
+                                }}
+                            />
+                        </View>
 
+                        <View style={{ width: 300, height: 30 }}>
+                            <RadioButton.Item
+                                value='Appartement'
+                                label='Appartement'
+                                onPress={() => {
+                                    setTypeProperties('Appartement');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Appartement' }))
+                                }}
+                            />
+                        </View>
+                        <View style={{ width: 300, height: 30 }}>
+                            <RadioButton.Item
+                                value='Terrain'
+                                label='Terrain'
+                                onPress={() => {
+                                    setTypeProperties('Terrain');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Terrain' }))
+                                }}
+                            />
+                        </View>
+                        <View style={{ width: 300, height: 30, marginBottom: 15 }}>
+                            <RadioButton.Item
+                                value='Commerce'
+                                label='Commerce'
+                                onPress={() => {
+                                    setTypeProperties('Commerce');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Commerce' }))
+                                }}
+                            />
+                        </View>
+                    </RadioButton.Group>
+                    <Text>Orientation du Bien :</Text>
+                    <RadioButton.Group
+                        value={orientation}
+                    >
+                        <View style={{ width: 300, height: 30 }}>
+                            <RadioButton.Item
+                                value='Nord'
+                                label='Nord'
+                                onPress={() => {
+                                    setOrientation('Nord');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Nord' }))
+                                }}
+                            />
+                        </View>
 
-                <Text>Type de Propriété :</Text>
-                <RadioButton.Group
-                    value={typeProperties}
-                >
-                    <View>
-                        <RadioButton.Item
-                            value='Maison'
-                            label='Maison'
-                            onPress={() => {
-                                setTypeProperties('Maison');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Maison' }))
-                            }}
-                        />
-                    </View>
+                        <View style={{ width: 300, height: 30 }}>
+                            <RadioButton.Item
+                                value='Sud'
+                                label='Sud'
+                                onPress={() => {
+                                    setOrientation('Sud');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Sud' }))
+                                }}
+                            />
+                        </View>
+                        <View style={{ width: 300, height: 30 }}>
+                            <RadioButton.Item
+                                value='Est'
+                                label='Est'
+                                onPress={() => {
+                                    setOrientation('Est');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Est' }))
+                                }}
+                            />
+                        </View>
+                        <View style={{ width: 300, height: 30, marginBottom: 15 }}>
+                            <RadioButton.Item
+                                value='Ouest'
+                                label='Ouest'
+                                onPress={() => {
+                                    setOrientation('Ouest');
+                                    setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Ouest' }))
+                                }}
+                            />
+                        </View>
+                    </RadioButton.Group>
+                    <Button
+                        title="Filtrer"
+                        onPress={() => handleSubmit()}
+                        color="#704EA6"
+                    />
 
-                    <View>
-                        <RadioButton.Item
-                            value='Appartement'
-                            label='Appartement'
-                            onPress={() => {
-                                setTypeProperties('Appartement');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Appartement' }))
-                            }}
-                        />
-                    </View>
-                    <View>
-                        <RadioButton.Item
-                            value='Terrain'
-                            label='Terrain'
-                            onPress={() => {
-                                setTypeProperties('Terrain');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Terrain' }))
-                            }}
-                        />
-                    </View>
-                    <View>
-                        <RadioButton.Item
-                            value='Commerce'
-                            label='Commerce'
-                            onPress={() => {
-                                setTypeProperties('Commerce');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Type de Bien": 'Commerce' }))
-                            }}
-                        />
-                    </View>
-                </RadioButton.Group>
-                <Text>Orientation du Bien :</Text>
-                <RadioButton.Group
-                    value={orientation}
-                >
-                    <View>
-                        <RadioButton.Item
-                            value='Nord'
-                            label='Nord'
-                            onPress={() => {
-                                setOrientation('Nord');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Nord' }))
-                            }}
-                        />
-                    </View>
+            </Card>
 
-                    <View>
-                        <RadioButton.Item
-                            value='Sud'
-                            label='Sud'
-                            onPress={() => {
-                                setOrientation('Sud');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Sud' }))
-                            }}
-                        />
-                    </View>
-                    <View>
-                        <RadioButton.Item
-                            value='Est'
-                            label='Est'
-                            onPress={() => {
-                                setOrientation('Est');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Est' }))
-                            }}
-                        />
-                    </View>
-                    <View>
-                        <RadioButton.Item
-                            value='Ouest'
-                            label='Ouest'
-                            onPress={() => {
-                                setOrientation('Ouest');
-                                setValueParameters(valueParameter => ({ ...valueParameter, "Orientation": 'Ouest' }))
-                            }}
-                        />
-                    </View>
-                </RadioButton.Group>
-                <Text>Nombre de Pièces :</Text>
-                <TextInput
-                    placeholder="Nombre de Pièces"
-                    label="Nombre de Pièces"
-                    onChangeText={(newValue) => {
-                        setPieceProperties(newValue);
-                        setValueParameters(valueParameter => ({ ...valueParameter, "Pièces": pieceProperties }));
-                    }}
-                    value={pieceProperties}
-                />
-                {/* {
-                    checkboxes.map((cb, index) => {
-                        return (
-                            <TouchableOpacity onPress={() => toggleCheckBox(cb.id, index)}  key={cb.id}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Checkbox
-                                        key={cb.id}
-                                        checked={cb.checked}
-                                    />
-                                    <Text>{cb.title}</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                        )
-                    })
-                } */}
-                <Button
-                    title="Filtrer"
-                    onPress={() => handleSubmit()}
-                />
-
-            </View>
             <View>
                 {
                     Object.keys(properties.property).map((items) => {
                         return (
                             <Card key={items.toString()}>
-                                <Card.Title>Type de propriété : {properties.property[items]["parameters"][1].valueParameter}</Card.Title>
+                                <Card.Title>{properties.property[items]["parameters"][1].valueParameter == 'Appartement' ? 'Superbe ' : 'Magnifique '}
+                                    {properties.property[items]["parameters"][1].valueParameter.toLowerCase()} de {properties.property[items]["parameters"][3].valueParameter} pièces !</Card.Title>
                                 <Card.Divider />
                                 <Card.Image source={{ uri: properties.property[items]["parameters"][8].valueParameter.toString() }}></Card.Image>
                                 <Card.Divider />
-                                <Text style={{ marginBottom: 10 }}>
-                                    {properties.property[items]["parameters"][2].valueParameter}, {properties.property[items]["parameters"][4].valueParameter} , {properties.property[items]["parameters"][5].valueParameter}, {properties.property[items]["parameters"][7].valueParameter} , {properties.property[items]["parameters"][0].valueParameter}€
-                                </Text>
+                                <Text style={{ fontWeight: 'bold', color: 'red', textAlign: 'right' }}>{properties.property[items]["parameters"][0].valueParameter}€</Text>
+                                <Text><Text style={{ fontWeight: 'bold' }}>Ville: </Text>{properties.property[items]["parameters"][5].valueParameter} {properties.property[items]["parameters"][4].valueParameter}</Text>
+                                <Text><Text style={{ fontWeight: 'bold' }}>Superficie: </Text>{properties.property[items]["parameters"][2].valueParameter}</Text>
+                                <Text style={{ textAlign: 'right', marginBottom: 10 }}>{properties.property[items]["parameters"][7].valueParameter}</Text>
 
                                 <Button
                                     onPress={() => navigation.navigate('PropertyDetails', { idProperty: properties.property[items].idProperty })}
                                     title="+ d'informations"
+                                    color="#704EA6"
                                 />
                             </Card>
                         )
